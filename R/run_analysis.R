@@ -12,7 +12,7 @@ run_analysis = function(input.path, output.path, siteid){
   X = as.matrix(data.input$X)
   A = as.matrix(data.input$A)
   
-  p=14
+  p=15
   X_full <- as.matrix(expand.grid(rep(list(0:1), p)))
   X_full_df <- data.frame(X_full)
   X_full_df[,1:p] <- lapply(X_full_df[,1:p], factor)
@@ -20,7 +20,7 @@ run_analysis = function(input.path, output.path, siteid){
   
   res_all = NULL
   
-  for(i in c(1,4,10)){
+  for(i in seq(1:12)){
     Y = as.matrix(data.input$Y.all[, ..i])
     print(paste0("Running analysis for outcome: ", colnames(data.input$Y.all[, ..i])))
     
