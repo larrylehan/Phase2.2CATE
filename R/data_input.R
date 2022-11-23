@@ -1,5 +1,4 @@
 library(data.table)
-# setwd("/Users/larryhan/OneDrive - Harvard University/HarvardG5")
 
 construct_outcomes = function(summary,
                               obs,
@@ -217,11 +216,9 @@ create.table = function(input.path){
   #### combine the datasets
   dat.input = left_join(dat.imp.save, dat.cov.save, by = c('cohort', 'patient_num'))
   dat.input[is.na(dat.input)] = 0 ## 0 when don't have any cov
+  dat.input = left_join(dat.input, res, by = c('patient_num'))
   
-  return(list(X = dat.input[, c(4:17)],
+  return(list(X = dat.input[, c(4:18),],
               A = dat.input[, 3],
-              Y.all = res
-             ))
+              Y.all = dat.input[, c(19:30)]))
 }
-
-
